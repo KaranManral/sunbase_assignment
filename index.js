@@ -9,7 +9,7 @@ $(document).ready(() => {
             sessionStorage.setItem("flag", "false")
             sessionStorage.setItem("bearer_token", "")
             $("#login").text("Login").off("click");
-            window.location.href = "/";
+            window.location.href = "./";
         })
     }
     else {
@@ -28,7 +28,10 @@ $(document).ready(() => {
             $.ajax({
                 url: "https://qa2.sunbasedata.com/sunbase/portal/api/assignment_auth.jsp",
                 type: "post",
+                crossDomain: true,
                 dataType: "json",
+                contentType: "text/plain",
+                headers: { "Content-Type": "text/plain" },
                 async: true,
                 data: JSON.stringify({ "login_id": email, "password": pwd }),
                 success: function (data) {
@@ -42,9 +45,9 @@ $(document).ready(() => {
                         sessionStorage.setItem("flag", "false")
                         sessionStorage.setItem("bearer_token", "")
                         $("#login").text("Login").off("click");
-                        window.location.href = "/";
+                        window.location.href = "./";
                     })
-                    window.location.href = "/";
+                    window.location.href = "./";
                 },
                 error: function (jqXHR, textStatus, err) {
                     alert("Incorrect Credentials");
@@ -75,6 +78,7 @@ $(document).ready(() => {
             $.ajax({
                 url: "https://qa2.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=create",
                 type: "post",
+                crossDomain: true,
                 dataType: "text",
                 contentType: "application/json",
                 async: true,
