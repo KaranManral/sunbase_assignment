@@ -1,6 +1,8 @@
 window.onload = () => {
     if (window.location.pathname != "/login")
-        if (sessionStorage.getItem("flag") == "false")
+        if (!sessionStorage.getItem("flag"))
+            window.location.href = "/login";
+        else if (sessionStorage.getItem("flag") == "false")
             window.location.href = "/login";
 }
 
